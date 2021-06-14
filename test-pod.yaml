@@ -1,0 +1,21 @@
+kind: Pod
+metadata:
+  name: my-application-pod
+spec:
+  containers:
+  - name: my-application
+    image: busybox
+    command:
+      - "/bin/sleep"
+      - "10000"
+    env:
+      - name: OAuth__Username
+        valueFrom:
+          secretKeyRef:
+            name: env-secrets
+            key: username
+      - name: OAuth__Password
+        valueFrom:
+          secretKeyRef:
+            name: env-secrets
+            key: password
